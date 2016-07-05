@@ -13,6 +13,9 @@
 		702BE9841D28B9F60057FC9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 702BE9821D28B9F60057FC9B /* Main.storyboard */; };
 		702BE98F1D28B9F60057FC9B /* sockettoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE98E1D28B9F60057FC9B /* sockettoolTests.swift */; };
 		702BE99A1D28B9F70057FC9B /* sockettoolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE9991D28B9F70057FC9B /* sockettoolUITests.swift */; };
+		70529BD51D2A671F00E9AF4B /* Socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70529BC01D2A670D00E9AF4B /* Socks.framework */; };
+		70529BD61D2A671F00E9AF4B /* SocksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70529BC21D2A670D00E9AF4B /* SocksCore.framework */; };
+		70529BD81D2B556300E9AF4B /* GParas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70529BD71D2B556300E9AF4B /* GParas.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +33,83 @@
 			remoteGlobalIDString = 702BE9781D28B9F60057FC9B;
 			remoteInfo = sockettool;
 		};
+		70529BBF1D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_Socks";
+			remoteInfo = Socks;
+		};
+		70529BC11D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksCore";
+			remoteInfo = SocksCore;
+		};
+		70529BC31D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksCoreExampleTCPClient";
+			remoteInfo = SocksCoreExampleTCPClient;
+		};
+		70529BC51D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksCoreExampleTCPKeepAliveServer";
+			remoteInfo = SocksCoreExampleTCPKeepAliveServer;
+		};
+		70529BC71D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksCoreExampleTCPServer";
+			remoteInfo = SocksCoreExampleTCPServer;
+		};
+		70529BC91D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksExampleTCPClient";
+			remoteInfo = SocksExampleTCPClient;
+		};
+		70529BCB1D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksExampleTCPServer";
+			remoteInfo = SocksExampleTCPServer;
+		};
+		70529BCD1D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksExampleUDPClient";
+			remoteInfo = SocksExampleUDPClient;
+		};
+		70529BCF1D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksExampleUDPServer";
+			remoteInfo = SocksExampleUDPServer;
+		};
+		70529BD11D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksTestSuite";
+			remoteInfo = SocksTestSuite;
+		};
+		70529BD31D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "_____Product_SocksCoreTestSuite";
+			remoteInfo = SocksCoreTestSuite;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +125,8 @@
 		702BE9951D28B9F70057FC9B /* sockettoolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sockettoolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		702BE9991D28B9F70057FC9B /* sockettoolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sockettoolUITests.swift; sourceTree = "<group>"; };
 		702BE99B1D28B9F70057FC9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Socks.xcodeproj; path = ../../Socks/Socks.xcodeproj; sourceTree = "<group>"; };
+		70529BD71D2B556300E9AF4B /* GParas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GParas.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +134,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70529BD51D2A671F00E9AF4B /* Socks.framework in Frameworks */,
+				70529BD61D2A671F00E9AF4B /* SocksCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +163,7 @@
 				702BE98D1D28B9F60057FC9B /* sockettoolTests */,
 				702BE9981D28B9F70057FC9B /* sockettoolUITests */,
 				702BE97A1D28B9F60057FC9B /* Products */,
+				70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +185,7 @@
 				702BE9801D28B9F60057FC9B /* Assets.xcassets */,
 				702BE9821D28B9F60057FC9B /* Main.storyboard */,
 				702BE9851D28B9F60057FC9B /* Info.plist */,
+				70529BD71D2B556300E9AF4B /* GParas.swift */,
 			);
 			path = sockettool;
 			sourceTree = "<group>";
@@ -120,6 +206,24 @@
 				702BE99B1D28B9F70057FC9B /* Info.plist */,
 			);
 			path = sockettoolUITests;
+			sourceTree = "<group>";
+		};
+		70529BB21D2A670C00E9AF4B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70529BC01D2A670D00E9AF4B /* Socks.framework */,
+				70529BC21D2A670D00E9AF4B /* SocksCore.framework */,
+				70529BC41D2A670D00E9AF4B /* SocksCoreExampleTCPClient */,
+				70529BC61D2A670D00E9AF4B /* SocksCoreExampleTCPKeepAliveServer */,
+				70529BC81D2A670D00E9AF4B /* SocksCoreExampleTCPServer */,
+				70529BCA1D2A670D00E9AF4B /* SocksExampleTCPClient */,
+				70529BCC1D2A670D00E9AF4B /* SocksExampleTCPServer */,
+				70529BCE1D2A670D00E9AF4B /* SocksExampleUDPClient */,
+				70529BD01D2A670D00E9AF4B /* SocksExampleUDPServer */,
+				70529BD21D2A670D00E9AF4B /* SocksTestSuite.xctest */,
+				70529BD41D2A670D00E9AF4B /* SocksCoreTestSuite.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +325,12 @@
 			mainGroup = 702BE9701D28B9F60057FC9B;
 			productRefGroup = 702BE97A1D28B9F60057FC9B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 70529BB21D2A670C00E9AF4B /* Products */;
+					ProjectRef = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				702BE9781D28B9F60057FC9B /* sockettool */,
@@ -229,6 +339,86 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		70529BC01D2A670D00E9AF4B /* Socks.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Socks.framework;
+			remoteRef = 70529BBF1D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BC21D2A670D00E9AF4B /* SocksCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SocksCore.framework;
+			remoteRef = 70529BC11D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BC41D2A670D00E9AF4B /* SocksCoreExampleTCPClient */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SocksCoreExampleTCPClient;
+			remoteRef = 70529BC31D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BC61D2A670D00E9AF4B /* SocksCoreExampleTCPKeepAliveServer */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SocksCoreExampleTCPKeepAliveServer;
+			remoteRef = 70529BC51D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BC81D2A670D00E9AF4B /* SocksCoreExampleTCPServer */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SocksCoreExampleTCPServer;
+			remoteRef = 70529BC71D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BCA1D2A670D00E9AF4B /* SocksExampleTCPClient */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SocksExampleTCPClient;
+			remoteRef = 70529BC91D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BCC1D2A670D00E9AF4B /* SocksExampleTCPServer */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SocksExampleTCPServer;
+			remoteRef = 70529BCB1D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BCE1D2A670D00E9AF4B /* SocksExampleUDPClient */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SocksExampleUDPClient;
+			remoteRef = 70529BCD1D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BD01D2A670D00E9AF4B /* SocksExampleUDPServer */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = SocksExampleUDPServer;
+			remoteRef = 70529BCF1D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BD21D2A670D00E9AF4B /* SocksTestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			path = SocksTestSuite.xctest;
+			remoteRef = 70529BD11D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		70529BD41D2A670D00E9AF4B /* SocksCoreTestSuite.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			path = SocksCoreTestSuite.xctest;
+			remoteRef = 70529BD31D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		702BE9771D28B9F60057FC9B /* Resources */ = {
@@ -261,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70529BD81D2B556300E9AF4B /* GParas.swift in Sources */,
 				702BE97F1D28B9F60057FC9B /* ViewController.swift in Sources */,
 				702BE97D1D28B9F60057FC9B /* AppDelegate.swift in Sources */,
 			);
@@ -494,6 +685,7 @@
 				702BE9A01D28B9F70057FC9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		702BE9A11D28B9F70057FC9B /* Build configuration list for PBXNativeTarget "sockettoolTests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +694,7 @@
 				702BE9A31D28B9F70057FC9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		702BE9A41D28B9F70057FC9B /* Build configuration list for PBXNativeTarget "sockettoolUITests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +703,7 @@
 				702BE9A61D28B9F70057FC9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
