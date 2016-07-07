@@ -406,14 +406,14 @@
 		};
 		70529BD21D2A670D00E9AF4B /* SocksTestSuite.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = SocksTestSuite.xctest;
 			remoteRef = 70529BD11D2A670D00E9AF4B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		70529BD41D2A670D00E9AF4B /* SocksCoreTestSuite.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = SocksCoreTestSuite.xctest;
 			remoteRef = 70529BD31D2A670D00E9AF4B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
