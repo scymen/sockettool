@@ -1,0 +1,3 @@
+[submodule "Socks"]
+	path = Socks
+	url = https://github.com/czechboy0/Socks.git

@@ -13,9 +13,10 @@
 		702BE9841D28B9F60057FC9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 702BE9821D28B9F60057FC9B /* Main.storyboard */; };
 		702BE98F1D28B9F60057FC9B /* sockettoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE98E1D28B9F60057FC9B /* sockettoolTests.swift */; };
 		702BE99A1D28B9F70057FC9B /* sockettoolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE9991D28B9F70057FC9B /* sockettoolUITests.swift */; };
-		70529BD51D2A671F00E9AF4B /* Socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70529BC01D2A670D00E9AF4B /* Socks.framework */; };
-		70529BD61D2A671F00E9AF4B /* SocksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70529BC21D2A670D00E9AF4B /* SocksCore.framework */; };
 		70529BD81D2B556300E9AF4B /* GParas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70529BD71D2B556300E9AF4B /* GParas.swift */; };
+		705FA4DD1D3B3E5000F0EAB7 /* Socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708352891D3A741400009A2F /* Socks.framework */; };
+		705FA4DE1D3B3E5000F0EAB7 /* SocksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7083528B1D3A741400009A2F /* SocksCore.framework */; };
+		70848B5D1D30FA3C00661A61 /* MySocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70848B5C1D30FA3C00661A61 /* MySocket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,79 +34,79 @@
 			remoteGlobalIDString = 702BE9781D28B9F60057FC9B;
 			remoteInfo = sockettool;
 		};
-		70529BBF1D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		708352881D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_Socks";
 			remoteInfo = Socks;
 		};
-		70529BC11D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		7083528A1D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksCore";
 			remoteInfo = SocksCore;
 		};
-		70529BC31D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		7083528C1D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksCoreExampleTCPClient";
 			remoteInfo = SocksCoreExampleTCPClient;
 		};
-		70529BC51D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		7083528E1D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksCoreExampleTCPKeepAliveServer";
 			remoteInfo = SocksCoreExampleTCPKeepAliveServer;
 		};
-		70529BC71D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		708352901D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksCoreExampleTCPServer";
 			remoteInfo = SocksCoreExampleTCPServer;
 		};
-		70529BC91D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		708352921D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksExampleTCPClient";
 			remoteInfo = SocksExampleTCPClient;
 		};
-		70529BCB1D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		708352941D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksExampleTCPServer";
 			remoteInfo = SocksExampleTCPServer;
 		};
-		70529BCD1D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		708352961D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksExampleUDPClient";
 			remoteInfo = SocksExampleUDPClient;
 		};
-		70529BCF1D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		708352981D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksExampleUDPServer";
 			remoteInfo = SocksExampleUDPServer;
 		};
-		70529BD11D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		7083529A1D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksTestSuite";
 			remoteInfo = SocksTestSuite;
 		};
-		70529BD31D2A670D00E9AF4B /* PBXContainerItemProxy */ = {
+		7083529C1D3A741400009A2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "_____Product_SocksCoreTestSuite";
 			remoteInfo = SocksCoreTestSuite;
@@ -125,8 +126,9 @@
 		702BE9951D28B9F70057FC9B /* sockettoolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sockettoolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		702BE9991D28B9F70057FC9B /* sockettoolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sockettoolUITests.swift; sourceTree = "<group>"; };
 		702BE99B1D28B9F70057FC9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Socks.xcodeproj; path = ../../Socks/Socks.xcodeproj; sourceTree = "<group>"; };
 		70529BD71D2B556300E9AF4B /* GParas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GParas.swift; sourceTree = "<group>"; };
+		7083527A1D3A741400009A2F /* Socks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Socks.xcodeproj; path = ../Socks/Socks.xcodeproj; sourceTree = "<group>"; };
+		70848B5C1D30FA3C00661A61 /* MySocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySocket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70529BD51D2A671F00E9AF4B /* Socks.framework in Frameworks */,
-				70529BD61D2A671F00E9AF4B /* SocksCore.framework in Frameworks */,
+				705FA4DD1D3B3E5000F0EAB7 /* Socks.framework in Frameworks */,
+				705FA4DE1D3B3E5000F0EAB7 /* SocksCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +165,7 @@
 				702BE98D1D28B9F60057FC9B /* sockettoolTests */,
 				702BE9981D28B9F70057FC9B /* sockettoolUITests */,
 				702BE97A1D28B9F60057FC9B /* Products */,
-				70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */,
+				7083527A1D3A741400009A2F /* Socks.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +188,7 @@
 				702BE9821D28B9F60057FC9B /* Main.storyboard */,
 				702BE9851D28B9F60057FC9B /* Info.plist */,
 				70529BD71D2B556300E9AF4B /* GParas.swift */,
+				70848B5C1D30FA3C00661A61 /* MySocket.swift */,
 			);
 			path = sockettool;
 			sourceTree = "<group>";
@@ -208,20 +211,20 @@
 			path = sockettoolUITests;
 			sourceTree = "<group>";
 		};
-		70529BB21D2A670C00E9AF4B /* Products */ = {
+		7083527B1D3A741400009A2F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				70529BC01D2A670D00E9AF4B /* Socks.framework */,
-				70529BC21D2A670D00E9AF4B /* SocksCore.framework */,
-				70529BC41D2A670D00E9AF4B /* SocksCoreExampleTCPClient */,
-				70529BC61D2A670D00E9AF4B /* SocksCoreExampleTCPKeepAliveServer */,
-				70529BC81D2A670D00E9AF4B /* SocksCoreExampleTCPServer */,
-				70529BCA1D2A670D00E9AF4B /* SocksExampleTCPClient */,
-				70529BCC1D2A670D00E9AF4B /* SocksExampleTCPServer */,
-				70529BCE1D2A670D00E9AF4B /* SocksExampleUDPClient */,
-				70529BD01D2A670D00E9AF4B /* SocksExampleUDPServer */,
-				70529BD21D2A670D00E9AF4B /* SocksTestSuite.xctest */,
-				70529BD41D2A670D00E9AF4B /* SocksCoreTestSuite.xctest */,
+				708352891D3A741400009A2F /* Socks.framework */,
+				7083528B1D3A741400009A2F /* SocksCore.framework */,
+				7083528D1D3A741400009A2F /* SocksCoreExampleTCPClient */,
+				7083528F1D3A741400009A2F /* SocksCoreExampleTCPKeepAliveServer */,
+				708352911D3A741400009A2F /* SocksCoreExampleTCPServer */,
+				708352931D3A741400009A2F /* SocksExampleTCPClient */,
+				708352951D3A741400009A2F /* SocksExampleTCPServer */,
+				708352971D3A741400009A2F /* SocksExampleUDPClient */,
+				708352991D3A741400009A2F /* SocksExampleUDPServer */,
+				7083529B1D3A741400009A2F /* SocksTestSuite.xctest */,
+				7083529D1D3A741400009A2F /* SocksCoreTestSuite.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -327,8 +330,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 70529BB21D2A670C00E9AF4B /* Products */;
-					ProjectRef = 70529BB11D2A670C00E9AF4B /* Socks.xcodeproj */;
+					ProductGroup = 7083527B1D3A741400009A2F /* Products */;
+					ProjectRef = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -341,81 +344,81 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		70529BC01D2A670D00E9AF4B /* Socks.framework */ = {
+		708352891D3A741400009A2F /* Socks.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Socks.framework;
-			remoteRef = 70529BBF1D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 708352881D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BC21D2A670D00E9AF4B /* SocksCore.framework */ = {
+		7083528B1D3A741400009A2F /* SocksCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = SocksCore.framework;
-			remoteRef = 70529BC11D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 7083528A1D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BC41D2A670D00E9AF4B /* SocksCoreExampleTCPClient */ = {
+		7083528D1D3A741400009A2F /* SocksCoreExampleTCPClient */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = SocksCoreExampleTCPClient;
-			remoteRef = 70529BC31D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 7083528C1D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BC61D2A670D00E9AF4B /* SocksCoreExampleTCPKeepAliveServer */ = {
+		7083528F1D3A741400009A2F /* SocksCoreExampleTCPKeepAliveServer */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = SocksCoreExampleTCPKeepAliveServer;
-			remoteRef = 70529BC51D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 7083528E1D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BC81D2A670D00E9AF4B /* SocksCoreExampleTCPServer */ = {
+		708352911D3A741400009A2F /* SocksCoreExampleTCPServer */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = SocksCoreExampleTCPServer;
-			remoteRef = 70529BC71D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 708352901D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BCA1D2A670D00E9AF4B /* SocksExampleTCPClient */ = {
+		708352931D3A741400009A2F /* SocksExampleTCPClient */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = SocksExampleTCPClient;
-			remoteRef = 70529BC91D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 708352921D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BCC1D2A670D00E9AF4B /* SocksExampleTCPServer */ = {
+		708352951D3A741400009A2F /* SocksExampleTCPServer */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = SocksExampleTCPServer;
-			remoteRef = 70529BCB1D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 708352941D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BCE1D2A670D00E9AF4B /* SocksExampleUDPClient */ = {
+		708352971D3A741400009A2F /* SocksExampleUDPClient */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = SocksExampleUDPClient;
-			remoteRef = 70529BCD1D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 708352961D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BD01D2A670D00E9AF4B /* SocksExampleUDPServer */ = {
+		708352991D3A741400009A2F /* SocksExampleUDPServer */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = SocksExampleUDPServer;
-			remoteRef = 70529BCF1D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 708352981D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BD21D2A670D00E9AF4B /* SocksTestSuite.xctest */ = {
+		7083529B1D3A741400009A2F /* SocksTestSuite.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
+			fileType = file;
 			path = SocksTestSuite.xctest;
-			remoteRef = 70529BD11D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 7083529A1D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		70529BD41D2A670D00E9AF4B /* SocksCoreTestSuite.xctest */ = {
+		7083529D1D3A741400009A2F /* SocksCoreTestSuite.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
+			fileType = file;
 			path = SocksCoreTestSuite.xctest;
-			remoteRef = 70529BD31D2A670D00E9AF4B /* PBXContainerItemProxy */;
+			remoteRef = 7083529C1D3A741400009A2F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -454,6 +457,7 @@
 				70529BD81D2B556300E9AF4B /* GParas.swift in Sources */,
 				702BE97F1D28B9F60057FC9B /* ViewController.swift in Sources */,
 				702BE97D1D28B9F60057FC9B /* AppDelegate.swift in Sources */,
+				70848B5D1D30FA3C00661A61 /* MySocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

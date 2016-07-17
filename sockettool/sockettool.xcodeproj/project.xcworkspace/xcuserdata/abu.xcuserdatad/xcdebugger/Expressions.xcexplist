@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "MySocket.thread_start_server(arg : AnyObject) -&gt; ():MySocket.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MySocket.(startServer22() -&gt; ()).(closure #2):MySocket.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MySocket.startServer22(arg : AnyObject) -&gt; ():MySocket.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "connections">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MySocket.startServer22() -&gt; ():MySocket.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MySocket.sendMsg() -&gt; ():MySocket.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "connections">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
