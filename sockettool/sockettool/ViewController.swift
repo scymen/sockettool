@@ -19,8 +19,7 @@ class ViewController: NSViewController ,SocketDelegate{
     let txt_listen : String = "Listen"
     let txt_stop : String = "Stop"
     
-    var arr :[[String]] = [["1.1.1.1","80"],["2.2.2.2","81"],["3.3.3.3","82"]]
-    
+    //  var arr :[[String]] = [["1.1.1.1","80"],["2.2.2.2","81"],["3.3.3.3","82"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +29,13 @@ class ViewController: NSViewController ,SocketDelegate{
             outlet_btn_ok.title = txt_cnn
         }
         
+        outlet_textview.string = "Ready"
+        
         outlet_tableview.delegate = self
         outlet_tableview.dataSource = self
         th.socketDelegate = self
     }
+    
     
     override var representedObject: AnyObject? {
         didSet {
@@ -58,40 +60,51 @@ class ViewController: NSViewController ,SocketDelegate{
     
     @IBOutlet weak var outlet_btn_clear: NSButton!
     
-    @IBOutlet weak var outlet_textview: NSScrollView!
+    @IBOutlet var outlet_textview: NSTextView!
     
     
-    func action(addr:ResolvedInternetAddress,status:socketStatus){
-        NSLog("action delegate \(status) \(addr) ")
+    func action(conn: Connection ){
+        //http://stackoverflow.com/questions/37805885/how-to-create-dispatch-queue-in-swift-3
+        DispatchQueue.main.sync {
+            outlet_tableview.reloadData()
+            outlet_textview.string = outlet_textview.string!+"\(conn) \r\n"
+        }
+        
     }
-    func receive(addr:ResolvedInternetAddress,b :[UInt8]){
-        NSLog("received delegate \(addr ) \(try! b.toString())")
-    }
-    
-    
-    
     
     
     @IBAction func action_btn_clear(_ sender: AnyObject) {
         
-        let fuckapple :NSClipView =   outlet_textview.contentView
-        var shit : NSTextView? = nil
+        //        let fuckapple :NSClipView =   outlet_textview.contentView
+        //        var shit : NSTextView? = nil
+        //
+        //        for n  in fuckapple.subviews {
+        //            if n.className == "NSTextView" {
+        //                shit = n as? NSTextView
+        //                break
+        //            }
+        //        }
+        //
+        //        if shit != nil {
+        //            shit?.string = "wft apple"
+        //        }
         
-        for n  in fuckapple.subviews {
-            if n.className == "NSTextView" {
-                shit = n as? NSTextView
-                break
-            }
-        }
+        // outlet_tableview.beginUpdates()
         
-        if shit != nil {
-            shit?.string = "wft apple"
-        }
+        //   outlet_tableview.insertRows(at: IndexSet, withAnimation: NSTableViewAnimationOptions)
         
-        self.arr.append(["9.9.9.9","test"])
-        outlet_tableview.reloadData()
+        //var IndexPathOfLastRow = NSIndexPath(forRow: self.arr.count - 1, inSection: 0)
+        //var IndexPathOfLastRow = NSIndexPath(index:  1)
+        // outlet_tableview.insertRows(at: IndexPathOfLastRow, withAnimation: NSTableViewAnimationOptions.slideDown)
+        // self.outlet_tableview.insertRowsAtIndexPaths([IndexPathOfLastRow], withRowAnimation: UITableViewRowAnimation.Left)
         
-    
+        //  outlet_tableview.endUpdates()
+        
+        // outlet_tableview.insertRows(at: 2, withAnimation: NSTableViewAnimationOptions.slideDown)
+        
+        //        self.arr.append(["9.9.9.9","test"])
+        //        outlet_tableview.reloadData()
+        
         
     }
     
@@ -176,8 +189,8 @@ extension ViewController : NSTableViewDataSource {
     
     //numberOfRowsInTableView
     func numberOfRows(in tableView: NSTableView) -> Int{
+        return  th.socketList.count
         
-        return arr.count
     }
     
 }
@@ -187,29 +200,36 @@ extension ViewController : NSTableViewDelegate {
     // called by the table view for every row and column to get the appropriate cell.
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        // var image:NSImage?
+        guard th.socketList.count > 0 else { return nil}
+        
         var text:String = ""
         var cellIdentifier: String = ""
         
-        let item = arr[row]
-        
-        // 2
-        if tableColumn == tableView.tableColumns[0] {
-            // image = item.icon
-            text = item[0]
-            cellIdentifier = "ipcellID"
-        } else if tableColumn == tableView.tableColumns[1] {
-            text = item[1]
-            cellIdentifier = "portcellID"
-        } else if tableColumn == tableView.tableColumns[2] {
-            text = "sizeeee"
-            cellIdentifier = "statuscellID"
+        // Ambiguous reference to member 'subscript'
+        var i = 0
+        for (d:c) in th.socketList {
+            if i == row {
+                let  item:Connection = c.value
+                
+                if tableColumn == tableView.tableColumns[0] {
+                    text =  item .socket.address.ipString()
+                    cellIdentifier = "ipcellID"
+                } else if tableColumn == tableView.tableColumns[1] {
+                    text =  item .socket.address.port.description
+                    cellIdentifier = "portcellID"
+                } else if tableColumn == tableView.tableColumns[2] {
+                    text = "R(\(item.receive)) S(\(item.send))"
+                    cellIdentifier = "statuscellID"
+                }
+                
+                break
+            }
+            i += 1
         }
         
-        // 3
+        
         if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
-            // cell.imageView?.image = image ?? nil
             return cell
         }
         return nil

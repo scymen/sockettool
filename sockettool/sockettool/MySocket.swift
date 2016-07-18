@@ -11,16 +11,93 @@ import Socks
 import SocksCore
 
 protocol SocketDelegate {
-    func action(addr:ResolvedInternetAddress,status:socketStatus)
-    func receive(addr:ResolvedInternetAddress,b :[UInt8])
+    func action(conn:Connection)
     
 }
 
-enum socketStatus {
-    case  newConnection
-    case closed
-    case reading
-    case writing
+class Connection: NSObject {
+    
+    private var _descriptor:Descriptor = 0
+    var descriptor: Descriptor {
+        get {return _descriptor }
+    }
+    
+    private var _status:SocketStatus
+    var status:SocketStatus{
+        get {return _status }
+    }
+    
+    private var _socket:TCPInternetSocket
+    var socket:TCPInternetSocket{
+        get{return _socket}
+    }
+    
+    private var _receive:Int = 0
+    var receive:Int {
+        get { return _receive}
+    }
+    
+    private var _send:Int = 0
+    var send:Int {
+        get {return _send }
+    }
+    
+    private var _bytes:[UInt8] = []
+    var bytes:[UInt8] {
+        get {return _bytes }
+        // set {_bytes = newValue }
+    }
+    
+    init(socket:TCPInternetSocket,status:SocketStatus,bytes:[UInt8]){
+        _descriptor = socket.descriptor
+        _socket = socket
+        _status = status
+        _bytes = bytes
+        _status = status
+        switch _status {
+        case .new :
+            _receive = 0
+            _send = 0
+        case .send:
+            _send = _bytes.count
+        case .receive:
+            _receive = _bytes.count
+        default:
+            break
+        }
+    }
+    
+    
+    func set(status:SocketStatus,bytes:[UInt8]){
+        _status = status
+        _bytes = bytes
+        switch _status {
+        case .close:
+            break
+        case .new:
+            break
+        case .receive:
+            _receive += _bytes.count
+        case .send:
+            _send += _bytes.count
+        default:
+            break
+        }
+    }
+    
+    override var description: String {
+        return "[\(_status)][\(_bytes.count)][\(_socket.address)] \(_bytes)"
+    }
+    
+}
+
+enum SocketStatus {
+    case new
+    case close
+    case receive
+    case send
+    case startListening
+    case connecting
 }
 
 class MySocket :NSObject{
@@ -29,7 +106,7 @@ class MySocket :NSObject{
     var th:Thread? = nil
     var isWorking:Bool = false
     var thisSocket:TCPInternetSocket? = nil
-    var socketList:[Descriptor:TCPInternetSocket] = [:]
+    var socketList:[Descriptor:Connection] = [:]
     
     var socketDelegate:SocketDelegate?
     
@@ -56,14 +133,15 @@ class MySocket :NSObject{
         exit = true
         
         for (d:s) in socketList {
-            NSLog("try to colse \(s.value) ")
+            try! s.value.socket.close()
+            s.value.set(status: .close, bytes: [])
             
-            try! s.value.close()
-            socketDelegate?.action(addr:  s.value.address, status: socketStatus.closed)
+            NSLog("-> \(s.value)")
+            
+            socketDelegate?.action(conn: s.value)
         }
         
         try! thisSocket?.close()
-        socketDelegate?.action(addr: (thisSocket?.address)!, status: socketStatus.closed)
         
         if th != nil {
             th?.cancel()
@@ -84,9 +162,18 @@ class MySocket :NSObject{
     }
     
     
-    func send(socket: TCPInternetSocket ,b: [UInt8]){
+    
+    func send(descriptor : Descriptor ,b: [UInt8]){
+        
+        guard socketList.keys.contains(descriptor) else {return }
+        
         do {
-            try socket.send(data: b)
+            let cnn = socketList[descriptor]!
+            cnn.set(status: .send, bytes: b)
+            
+            NSLog("-> \(cnn)")
+            
+            try cnn.socket.send(data: b)
         }catch {
             NSLog("error \(error)")
         }
@@ -95,25 +182,34 @@ class MySocket :NSObject{
     
     
     func handleMessage(client: TCPInternetSocket) throws -> HandleResult {
-        let b:[UInt8] = try client.recvAll()
-        NSLog("received \(client.address) length=\(b.count)")
-        socketDelegate?.receive(addr: client.address, b: b)
+        
+        let b = try client.recvAll()
+        
+        guard b.count > 0 else {return .close }
+        
+        let cnn = socketList[client.descriptor]!
+        cnn.set(status: .receive, bytes:b)
+        
+        NSLog("-> \(cnn)")
+        
+        socketDelegate?.action(conn: cnn)
+        
         return .keepAlive
     }
     
     
-    func closeSocket(addr:ResolvedInternetAddress) throws {
-        NSLog("close \(addr)")
+    func closeSocket(descriptor:Descriptor) throws {
         
-        let k = Descriptor(addr.description)!
+        guard  socketList.keys.contains(descriptor) else { return }
         
-        guard socketList.keys.contains(k) else { return }
+        let cnn = socketList.removeValue(forKey: descriptor)
         
-        try socketList[k]?.close()
-        
-        socketList.removeValue(forKey:  k)
-        
-        socketDelegate?.action(addr: addr, status:socketStatus.closed)
+        if cnn != nil {
+            try cnn?.socket.close()
+            cnn?.set(status: .close, bytes: [])
+            NSLog("-> \(cnn)")
+            socketDelegate?.action(conn: cnn!)
+        }
         
     }
     
@@ -130,8 +226,9 @@ class MySocket :NSObject{
             try server.bind()
             try server.listen()
             
-            print("\(server.descriptor) Listening on \( server.address ) ")
+            socketDelegate?.action(conn: Connection(socket: server, status: .startListening, bytes: []))
             
+            NSLog("Socket(\(server.descriptor)) listening on \( server.address ) ")
             
             while true {
                 
@@ -142,26 +239,23 @@ class MySocket :NSObject{
                 
                 let (reads, writes, errors) = try select(reads: watchedReads, errors: watchedReads  )
                 
-                NSLog("total connection = \(socketList.count) ")
-                
                 //first handle any existing connections
                 try reads.filter { $0 != server.descriptor }.forEach {
                     
                     let client = socketList[$0]!
                     do {
-                        let result = try handleMessage(client: client)
+                        let result = try handleMessage(client: client.socket)
                         switch result {
                         case .close:
-                            try closeSocket(addr:  client.address)
+                            try closeSocket(descriptor: client.descriptor)
                         case .keepAlive:
                             break
                         }
                     } catch {
                         print("Error: \(error)")
-                        try closeSocket(addr:  client.address)
+                        try closeSocket(descriptor: client.descriptor)
                     }
                 }
-                
                 
                 //then only continue if there's data on the server listening socket
                 guard Set(reads).contains(server.descriptor) else { continue }
@@ -171,9 +265,11 @@ class MySocket :NSObject{
                 guard socketList[socket.descriptor] == nil else {
                     throw MyError.descriptorReuse
                 }
-                socketList[socket.descriptor] = socket
-                NSLog("New connection \(socket.address)")
-                socketDelegate?.action(addr:  socket.address, status: socketStatus.newConnection)
+                let c = Connection( socket: socket, status: .new,bytes: [])
+                socketList[socket.descriptor] = c
+                NSLog("--> \(c)")
+                socketDelegate?.action(conn: c)
+                NSLog("total connection = \(socketList.count) ")
                 //try socket.send(data: "hello".toBytes() )
             }
             
