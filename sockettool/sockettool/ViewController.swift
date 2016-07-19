@@ -29,7 +29,7 @@ class ViewController: NSViewController ,SocketDelegate{
             outlet_btn_ok.title = txt_cnn
         }
         
-        outlet_textview.string = "Ready"
+        outlet_textview.string = "Ready\r\n"
         
         outlet_tableview.delegate = self
         outlet_tableview.dataSource = self
@@ -65,9 +65,9 @@ class ViewController: NSViewController ,SocketDelegate{
     
     func action(conn: Connection ){
         //http://stackoverflow.com/questions/37805885/how-to-create-dispatch-queue-in-swift-3
-        DispatchQueue.main.sync {
-            outlet_tableview.reloadData()
-            outlet_textview.string = outlet_textview.string!+"\(conn) \r\n"
+        DispatchQueue.main.async {
+            self.outlet_tableview.reloadData()
+            self.outlet_textview.string = self.outlet_textview.string!+"\(conn) \r\n"
         }
         
     }

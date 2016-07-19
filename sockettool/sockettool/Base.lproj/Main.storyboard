@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
@@ -679,11 +679,11 @@
                                 <tabViewItems>
                                     <tabViewItem label="Config" identifier="1" id="Dh4-Pj-eLJ">
                                         <view key="view" id="wQo-sP-gLD">
-                                            <rect key="frame" x="10" y="33" width="445" height="262"/>
+                                            <rect key="frame" x="10" y="33" width="128" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="daD-q2-NAW">
-                                                    <rect key="frame" x="16" y="210" width="99" height="18"/>
+                                                    <rect key="frame" x="16" y="-52" width="99" height="18"/>
                                                     <buttonCell key="cell" type="radio" title="Client Model" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="g6m-cg-maj">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -693,7 +693,7 @@
                                                     </connections>
                                                 </button>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="BKW-dN-rMr">
-                                                    <rect key="frame" x="135" y="210" width="103" height="18"/>
+                                                    <rect key="frame" x="135" y="-52" width="103" height="18"/>
                                                     <buttonCell key="cell" type="radio" title="Server Model" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Glf-hS-p7p">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -703,7 +703,7 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-MQ-GKe">
-                                                    <rect key="frame" x="264" y="161" width="97" height="32"/>
+                                                    <rect key="frame" x="264" y="-101" width="97" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="gC1-9S-dgh"/>
                                                     </constraints>
@@ -719,7 +719,7 @@ DQ
                                                     </buttonCell>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iks-Hd-oTm">
-                                                    <rect key="frame" x="17" y="167" width="153" height="22"/>
+                                                    <rect key="frame" x="17" y="-95" width="153" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="127.0.0.1" placeholderString="IP address" drawsBackground="YES" id="ce4-nH-8bi">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -727,7 +727,7 @@ DQ
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kSE-le-3w9">
-                                                    <rect key="frame" x="178" y="168" width="58" height="22"/>
+                                                    <rect key="frame" x="178" y="-94" width="58" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="58" id="HHV-1E-zc2"/>
                                                     </constraints>
@@ -908,7 +908,7 @@ DQ
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="G8s-fg-qjg">
-                                                        <rect key="frame" x="1" y="-15" width="0.0" height="15"/>
+                                                        <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="h0h-ua-YYT">

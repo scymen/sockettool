@@ -86,8 +86,11 @@ class Connection: NSObject {
     }
     
     override var description: String {
-        return "[\(_status)][\(_bytes.count)][\(_socket.address)] \(_bytes)"
+        //return "[\(_status)][\(_socket.address)][\(_bytes.count)] \(_bytes)"
+        return "[\(_status)][\(_socket.address)][\(_bytes.count)] \(GParas.toHex(byte:_bytes).insert(step: 2,ch: Character(" ")))"
     }
+    
+    
     
 }
 

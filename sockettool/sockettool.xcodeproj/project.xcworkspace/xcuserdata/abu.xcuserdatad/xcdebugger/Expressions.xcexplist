@@ -3,10 +3,23 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "MySocket.thread_start_server(arg : AnyObject) -&gt; ():MySocket.swift">
+         contextName = "MySocket.(startServer22() -&gt; ()).(closure #2):MySocket.swift">
       </ContextState>
       <ContextState
-         contextName = "MySocket.(startServer22() -&gt; ()).(closure #2):MySocket.swift">
+         contextName = "static GParas.toHex(byte : [UInt8]) -&gt; String:GParas.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "b &amp; 0x0f">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "String.hex2Byte() throws -&gt; [UInt8]:GParas.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UInt8(a)">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MySocket.startServer22(arg : AnyObject) -&gt; ():MySocket.swift">
@@ -17,7 +30,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MySocket.startServer22() -&gt; ():MySocket.swift">
+         contextName = "String.sub(start : Int, end : Int) throws -&gt; String:GParas.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "&quot;\(res)&quot;">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MySocket.sendMsg() -&gt; ():MySocket.swift">
@@ -26,6 +44,15 @@
                value = "connections">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.action_btn_clear(AnyObject) -&gt; ():ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MySocket.thread_start_server(arg : AnyObject) -&gt; ():MySocket.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MySocket.startServer22() -&gt; ():MySocket.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
