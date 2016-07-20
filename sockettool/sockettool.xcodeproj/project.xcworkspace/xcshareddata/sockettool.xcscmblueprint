@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B7869E8E4B12BA0108E791063BFCDAF5A6D35FDC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B7869E8E4B12BA0108E791063BFCDAF5A6D35FDC" : 0,
+    "9C479842BAB37E5A02B52F0D8BB690041F1A927F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F76EB408-BBE9-42A9-B5A2-CA1CEB96A76B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B7869E8E4B12BA0108E791063BFCDAF5A6D35FDC" : "sockettool\/",
+    "9C479842BAB37E5A02B52F0D8BB690041F1A927F" : "sockettool\/Socks\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "sockettool",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "sockettool\/sockettool.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/czechboy0\/Socks.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9C479842BAB37E5A02B52F0D8BB690041F1A927F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/scymen\/sockettool.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B7869E8E4B12BA0108E791063BFCDAF5A6D35FDC"
+    }
+  ]
+}

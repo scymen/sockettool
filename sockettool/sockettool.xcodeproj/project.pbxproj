@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7021F2C51D3F195800EEDFEE /* ExtendThem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7021F2C41D3F195700EEDFEE /* ExtendThem.swift */; };
+		7021F2D21D3F1C5000EEDFEE /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7021F2D11D3F1C5000EEDFEE /* Connection.swift */; };
 		702BE97D1D28B9F60057FC9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE97C1D28B9F60057FC9B /* AppDelegate.swift */; };
 		702BE97F1D28B9F60057FC9B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE97E1D28B9F60057FC9B /* ViewController.swift */; };
 		702BE9811D28B9F60057FC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 702BE9801D28B9F60057FC9B /* Assets.xcassets */; };
 		702BE9841D28B9F60057FC9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 702BE9821D28B9F60057FC9B /* Main.storyboard */; };
 		702BE98F1D28B9F60057FC9B /* sockettoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE98E1D28B9F60057FC9B /* sockettoolTests.swift */; };
 		702BE99A1D28B9F70057FC9B /* sockettoolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE9991D28B9F70057FC9B /* sockettoolUITests.swift */; };
-		70529BD81D2B556300E9AF4B /* GParas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70529BD71D2B556300E9AF4B /* GParas.swift */; };
+		70529BD81D2B556300E9AF4B /* Paras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70529BD71D2B556300E9AF4B /* Paras.swift */; };
 		705FA4DD1D3B3E5000F0EAB7 /* Socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708352891D3A741400009A2F /* Socks.framework */; };
 		705FA4DE1D3B3E5000F0EAB7 /* SocksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7083528B1D3A741400009A2F /* SocksCore.framework */; };
 		70848B5D1D30FA3C00661A61 /* MySocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70848B5C1D30FA3C00661A61 /* MySocket.swift */; };
@@ -114,6 +116,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7021F2C41D3F195700EEDFEE /* ExtendThem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendThem.swift; sourceTree = "<group>"; };
+		7021F2D11D3F1C5000EEDFEE /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		702BE9791D28B9F60057FC9B /* sockettool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sockettool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		702BE97C1D28B9F60057FC9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		702BE97E1D28B9F60057FC9B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +130,7 @@
 		702BE9951D28B9F70057FC9B /* sockettoolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sockettoolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		702BE9991D28B9F70057FC9B /* sockettoolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sockettoolUITests.swift; sourceTree = "<group>"; };
 		702BE99B1D28B9F70057FC9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70529BD71D2B556300E9AF4B /* GParas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GParas.swift; sourceTree = "<group>"; };
+		70529BD71D2B556300E9AF4B /* Paras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paras.swift; sourceTree = "<group>"; };
 		7083527A1D3A741400009A2F /* Socks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Socks.xcodeproj; path = ../Socks/Socks.xcodeproj; sourceTree = "<group>"; };
 		70848B5C1D30FA3C00661A61 /* MySocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySocket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,8 +191,10 @@
 				702BE9801D28B9F60057FC9B /* Assets.xcassets */,
 				702BE9821D28B9F60057FC9B /* Main.storyboard */,
 				702BE9851D28B9F60057FC9B /* Info.plist */,
-				70529BD71D2B556300E9AF4B /* GParas.swift */,
+				70529BD71D2B556300E9AF4B /* Paras.swift */,
 				70848B5C1D30FA3C00661A61 /* MySocket.swift */,
+				7021F2C41D3F195700EEDFEE /* ExtendThem.swift */,
+				7021F2D11D3F1C5000EEDFEE /* Connection.swift */,
 			);
 			path = sockettool;
 			sourceTree = "<group>";
@@ -454,7 +460,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70529BD81D2B556300E9AF4B /* GParas.swift in Sources */,
+				7021F2C51D3F195800EEDFEE /* ExtendThem.swift in Sources */,
+				7021F2D21D3F1C5000EEDFEE /* Connection.swift in Sources */,
+				70529BD81D2B556300E9AF4B /* Paras.swift in Sources */,
 				702BE97F1D28B9F60057FC9B /* ViewController.swift in Sources */,
 				702BE97D1D28B9F60057FC9B /* AppDelegate.swift in Sources */,
 				70848B5D1D30FA3C00661A61 /* MySocket.swift in Sources */,

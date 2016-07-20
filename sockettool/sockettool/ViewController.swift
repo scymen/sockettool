@@ -8,10 +8,8 @@
 
 import Cocoa
 import Foundation
-
-import Socks
 import SocksCore
-
+import Socks
 
 class ViewController: NSViewController ,SocketDelegate{
     
@@ -19,7 +17,6 @@ class ViewController: NSViewController ,SocketDelegate{
     let txt_listen : String = "Listen"
     let txt_stop : String = "Stop"
     
-    //  var arr :[[String]] = [["1.1.1.1","80"],["2.2.2.2","81"],["3.3.3.3","82"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +30,20 @@ class ViewController: NSViewController ,SocketDelegate{
         
         outlet_tableview.delegate = self
         outlet_tableview.dataSource = self
+       
+//        outlet_tableview.target = self
+//        outlet_tableview.doubleAction = Selector(("tableViewDoubleClick"))
+       
+//        let descriptorIP = SortDescriptor(key: "ip", ascending: true)
+//        let descriptorPort = SortDescriptor(key: "port", ascending: true)
+//        let descriptorStatus = SortDescriptor(key: "status", ascending: true)
+//  
+//        outlet_tableview.tableColumns[0].sortDescriptorPrototype = descriptorIP;
+//        outlet_tableview.tableColumns[1].sortDescriptorPrototype = descriptorPort;
+//        outlet_tableview.tableColumns[2].sortDescriptorPrototype = descriptorStatus;
+        
         th.socketDelegate = self
+
     }
     
     
@@ -56,13 +66,21 @@ class ViewController: NSViewController ,SocketDelegate{
     
     @IBOutlet weak var outlet_btn_ok: NSButton!
     
-    @IBOutlet weak var outlet_btn_save_as: NSButton!
+    @IBOutlet weak var outlet_checkbox_hex: NSButton!
+    
+    @IBOutlet weak var outlet_checkbox_echo: NSButton!
+    
+    @IBOutlet weak var outlet_combo_echo_ms: NSComboBoxCell!
+    
+    @IBOutlet weak var outlet_btn_send: NSButton!
     
     @IBOutlet weak var outlet_btn_clear: NSButton!
     
     @IBOutlet var outlet_textview: NSTextView!
     
+    @IBOutlet weak var outlet_txt_send: NSTextField!
     
+    // delegate
     func action(conn: Connection ){
         //http://stackoverflow.com/questions/37805885/how-to-create-dispatch-queue-in-swift-3
         DispatchQueue.main.async {
@@ -72,22 +90,47 @@ class ViewController: NSViewController ,SocketDelegate{
         
     }
     
+    @IBAction func action_btn_send(_ sender: AnyObject) {
+        
+        guard outlet_txt_send.stringValue.characters.count > 0 else { return }
+        
+        if Paras.isClientMode {
+            
+            do {
+                try th.thisSocket?.send(data: getMsg2send())
+            }catch {
+                self.outlet_textview.string = self.outlet_textview.string!+"\(error) \r\n"
+            }
+            
+        } else {
+            
+            let aa:IndexSet =  outlet_tableview.selectedRowIndexes
+            
+            print("-->> index set = \(aa)")
+            th.send(descriptor: Descriptor(3), b: getMsg2send())
+        }
+        
+    }
+    
+    func getMsg2send() -> [UInt8] {
+        var b:[UInt8] = []
+        if outlet_checkbox_hex.state == 1 {
+            let hex = outlet_txt_send.stringValue.replacingOccurrences(of: " ", with: "")
+            if hex.isHex() {
+                b = try! hex.hex2Byte()
+            } else {
+                self.outlet_textview.string = self.outlet_textview.string!+"Not a hex string \r\n"
+            }
+        } else {
+            b = outlet_txt_send.stringValue.toBytes()
+        }
+        return b
+    }
+    
     
     @IBAction func action_btn_clear(_ sender: AnyObject) {
         
-        //        let fuckapple :NSClipView =   outlet_textview.contentView
-        //        var shit : NSTextView? = nil
-        //
-        //        for n  in fuckapple.subviews {
-        //            if n.className == "NSTextView" {
-        //                shit = n as? NSTextView
-        //                break
-        //            }
-        //        }
-        //
-        //        if shit != nil {
-        //            shit?.string = "wft apple"
-        //        }
+        outlet_textview.string = "Clear"
         
         // outlet_tableview.beginUpdates()
         
@@ -128,7 +171,7 @@ class ViewController: NSViewController ,SocketDelegate{
         
         if !th.isWorking {
             
-            if !GParas.parasValidated(ip:outlet_txt_ip.stringValue, port: outlet_txt_port.stringValue){
+            if !Paras.parasValidated(ip:outlet_txt_ip.stringValue, port: outlet_txt_port.stringValue){
                 
                 let a = NSAlert()
                 a.messageText = "Error"
@@ -147,18 +190,24 @@ class ViewController: NSViewController ,SocketDelegate{
             }
             
             if outlet_radio_clientmodel.state==1{
-                GParas.isClientMode = true
+                Paras.isClientMode = true
             } else {
-                GParas.isClientMode = false
+                Paras.isClientMode = false
             }
             
             outlet_btn_ok.title = txt_stop
             
+           // disable editing
+            outlet_txt_port.isEnabled = false
+            outlet_txt_ip.isEnabled = false
+            outlet_radio_clientmodel.isEnabled = false
+            outlet_radio_servermodel.isEnabled = false
+ 
             th.start2Work()
             
         } else { // socket is working
             
-            if GParas.isClientMode {
+            if Paras.isClientMode {
                 outlet_btn_ok.title = txt_cnn
             }else {
                 outlet_btn_ok.title = txt_listen
@@ -166,72 +215,15 @@ class ViewController: NSViewController ,SocketDelegate{
             
             th.stopWorking()
             
+            // endable editing
+            outlet_txt_port.isEnabled = true
+            outlet_txt_ip.isEnabled = true
+            outlet_radio_clientmodel.isEnabled = true
+            outlet_radio_servermodel.isEnabled = true
         }
         
         // NSLog( "ok click")
         
     }
     
-}
-
-
-extension ViewController : NSTableViewDataSource {
-    
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject?{
-        return nil
-    }
-    
-    
-    func tableView(_ tableView: NSTableView, setObjectValue object: AnyObject?, for tableColumn: NSTableColumn?, row: Int){
-        
-        
-    }
-    
-    //numberOfRowsInTableView
-    func numberOfRows(in tableView: NSTableView) -> Int{
-        return  th.socketList.count
-        
-    }
-    
-}
-
-extension ViewController : NSTableViewDelegate {
-    
-    // called by the table view for every row and column to get the appropriate cell.
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        guard th.socketList.count > 0 else { return nil}
-        
-        var text:String = ""
-        var cellIdentifier: String = ""
-        
-        // Ambiguous reference to member 'subscript'
-        var i = 0
-        for (d:c) in th.socketList {
-            if i == row {
-                let  item:Connection = c.value
-                
-                if tableColumn == tableView.tableColumns[0] {
-                    text =  item .socket.address.ipString()
-                    cellIdentifier = "ipcellID"
-                } else if tableColumn == tableView.tableColumns[1] {
-                    text =  item .socket.address.port.description
-                    cellIdentifier = "portcellID"
-                } else if tableColumn == tableView.tableColumns[2] {
-                    text = "R(\(item.receive)) S(\(item.send))"
-                    cellIdentifier = "statuscellID"
-                }
-                
-                break
-            }
-            i += 1
-        }
-        
-        
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = text
-            return cell
-        }
-        return nil
-    }
 }

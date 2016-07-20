@@ -7,101 +7,9 @@
 //
 
 import Foundation
-import Socks
 import SocksCore
+import Socks
 
-protocol SocketDelegate {
-    func action(conn:Connection)
-    
-}
-
-class Connection: NSObject {
-    
-    private var _descriptor:Descriptor = 0
-    var descriptor: Descriptor {
-        get {return _descriptor }
-    }
-    
-    private var _status:SocketStatus
-    var status:SocketStatus{
-        get {return _status }
-    }
-    
-    private var _socket:TCPInternetSocket
-    var socket:TCPInternetSocket{
-        get{return _socket}
-    }
-    
-    private var _receive:Int = 0
-    var receive:Int {
-        get { return _receive}
-    }
-    
-    private var _send:Int = 0
-    var send:Int {
-        get {return _send }
-    }
-    
-    private var _bytes:[UInt8] = []
-    var bytes:[UInt8] {
-        get {return _bytes }
-        // set {_bytes = newValue }
-    }
-    
-    init(socket:TCPInternetSocket,status:SocketStatus,bytes:[UInt8]){
-        _descriptor = socket.descriptor
-        _socket = socket
-        _status = status
-        _bytes = bytes
-        _status = status
-        switch _status {
-        case .new :
-            _receive = 0
-            _send = 0
-        case .send:
-            _send = _bytes.count
-        case .receive:
-            _receive = _bytes.count
-        default:
-            break
-        }
-    }
-    
-    
-    func set(status:SocketStatus,bytes:[UInt8]){
-        _status = status
-        _bytes = bytes
-        switch _status {
-        case .close:
-            break
-        case .new:
-            break
-        case .receive:
-            _receive += _bytes.count
-        case .send:
-            _send += _bytes.count
-        default:
-            break
-        }
-    }
-    
-    override var description: String {
-        //return "[\(_status)][\(_socket.address)][\(_bytes.count)] \(_bytes)"
-        return "[\(_status)][\(_socket.address)][\(_bytes.count)] \(GParas.toHex(byte:_bytes).insert(step: 2,ch: Character(" ")))"
-    }
-    
-    
-    
-}
-
-enum SocketStatus {
-    case new
-    case close
-    case receive
-    case send
-    case startListening
-    case connecting
-}
 
 class MySocket :NSObject{
     
@@ -121,7 +29,7 @@ class MySocket :NSObject{
         guard !isWorking else {return}
         
         exit = false
-        if GParas.isClientMode {
+        if Paras.isClientMode {
             NSLog("client mode")
         }else {
             NSLog("server mode")
@@ -220,9 +128,11 @@ class MySocket :NSObject{
     func startServer(arg: AnyObject){
         
         do {
-            
-            let address =   InternetAddress(hostname: GParas.IP!, port: (UInt16)(GParas.port),addressFamily: AddressFamily.inet)
-            //   let address = InternetAddress.any(port: 8080)
+            var address = InternetAddress.any(port: 8080)
+            if Paras.IP != "0.0.0.0" {
+                  address =   InternetAddress(hostname: Paras.IP!, port: (UInt16)(Paras.port),addressFamily: AddressFamily.inet)
+            }
+           
             let  server = try TCPInternetSocket(address: address)
             thisSocket = server
             
