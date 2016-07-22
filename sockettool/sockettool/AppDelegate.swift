@@ -25,4 +25,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 protocol SocketDelegate {
     func action(conn:Connection)
+    func action(msg:String)
+    func setButtonEnable(id:String,enable:Bool)
 }

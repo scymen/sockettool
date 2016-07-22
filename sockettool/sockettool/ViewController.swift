@@ -26,24 +26,26 @@ class ViewController: NSViewController ,SocketDelegate{
             outlet_btn_ok.title = txt_cnn
         }
         
-        outlet_textview.string = "Ready\r\n"
+        //outlet_textview.string = "Ready\r\n"
+        
+        showMsg(str:"Ready",clearFirstly: true)
         
         outlet_tableview.delegate = self
         outlet_tableview.dataSource = self
-       
-//        outlet_tableview.target = self
-//        outlet_tableview.doubleAction = Selector(("tableViewDoubleClick"))
-       
-//        let descriptorIP = SortDescriptor(key: "ip", ascending: true)
-//        let descriptorPort = SortDescriptor(key: "port", ascending: true)
-//        let descriptorStatus = SortDescriptor(key: "status", ascending: true)
-//  
-//        outlet_tableview.tableColumns[0].sortDescriptorPrototype = descriptorIP;
-//        outlet_tableview.tableColumns[1].sortDescriptorPrototype = descriptorPort;
-//        outlet_tableview.tableColumns[2].sortDescriptorPrototype = descriptorStatus;
+        
+        //        outlet_tableview.target = self
+        //        outlet_tableview.doubleAction = Selector(("tableViewDoubleClick"))
+        
+        //        let descriptorIP = SortDescriptor(key: "ip", ascending: true)
+        //        let descriptorPort = SortDescriptor(key: "port", ascending: true)
+        //        let descriptorStatus = SortDescriptor(key: "status", ascending: true)
+        //
+        //        outlet_tableview.tableColumns[0].sortDescriptorPrototype = descriptorIP;
+        //        outlet_tableview.tableColumns[1].sortDescriptorPrototype = descriptorPort;
+        //        outlet_tableview.tableColumns[2].sortDescriptorPrototype = descriptorStatus;
         
         th.socketDelegate = self
-
+        
     }
     
     
@@ -85,9 +87,47 @@ class ViewController: NSViewController ,SocketDelegate{
         //http://stackoverflow.com/questions/37805885/how-to-create-dispatch-queue-in-swift-3
         DispatchQueue.main.async {
             self.outlet_tableview.reloadData()
-            self.outlet_textview.string = self.outlet_textview.string!+"\(conn) \r\n"
+            if self.outlet_checkbox_hex.state == 1 {
+                self.showMsg(str: "\(conn)")
+            } else {
+                self.showMsg(str: "\(try! conn.bytes.toString())")
+            }
+            
         }
         
+    }
+    
+    // delegate
+    func action(msg:String) {
+        DispatchQueue.main.async {
+            self.showMsg(str: msg)
+        }
+    }
+    
+    // delegate
+    func setButtonEnable(id:String,enable:Bool) {
+        if id == "btnOK" {
+            outlet_btn_ok.isEnabled = true
+            if enable {
+                // endable editing
+                outlet_txt_port.isEnabled = true
+                outlet_txt_ip.isEnabled = true
+                outlet_radio_clientmodel.isEnabled = true
+                outlet_radio_servermodel.isEnabled = true
+                if Paras.isClientMode {
+                    outlet_btn_ok.title = txt_cnn
+                }else {
+                    outlet_btn_ok.title = txt_listen
+                }
+            } else {
+                // disable editing
+                outlet_txt_port.isEnabled = false
+                outlet_txt_ip.isEnabled = false
+                outlet_radio_clientmodel.isEnabled = false
+                outlet_radio_servermodel.isEnabled = false
+                outlet_btn_ok.title = txt_stop
+            }
+        }
     }
     
     @IBAction func action_btn_send(_ sender: AnyObject) {
@@ -96,11 +136,7 @@ class ViewController: NSViewController ,SocketDelegate{
         
         if Paras.isClientMode {
             
-            do {
-                try th.thisSocket?.send(data: getMsg2send())
-            }catch {
-                self.outlet_textview.string = self.outlet_textview.string!+"\(error) \r\n"
-            }
+            th.send(b: getMsg2send())
             
         } else {
             
@@ -119,7 +155,7 @@ class ViewController: NSViewController ,SocketDelegate{
             if hex.isHex() {
                 b = try! hex.hex2Byte()
             } else {
-                self.outlet_textview.string = self.outlet_textview.string!+"Not a hex string \r\n"
+                showMsg(str:  "Not a hex string")
             }
         } else {
             b = outlet_txt_send.stringValue.toBytes()
@@ -128,26 +164,30 @@ class ViewController: NSViewController ,SocketDelegate{
     }
     
     
+    func showMsg(str:String,clearFirstly:Bool = false,newLine:Bool = true) {
+        let a : String = clearFirstly ? "":self.outlet_textview.string!
+        self.outlet_textview.string = a + "\(Date().toString(fmt: "HH:mm:ss.SSS")) \(str)"
+            + (newLine ? "\r" :"")
+    }
+    
+    
     @IBAction func action_btn_clear(_ sender: AnyObject) {
         
-        outlet_textview.string = "Clear"
+        showMsg(str: "Clear",clearFirstly: true)
         
-        // outlet_tableview.beginUpdates()
-        
-        //   outlet_tableview.insertRows(at: IndexSet, withAnimation: NSTableViewAnimationOptions)
-        
-        //var IndexPathOfLastRow = NSIndexPath(forRow: self.arr.count - 1, inSection: 0)
-        //var IndexPathOfLastRow = NSIndexPath(index:  1)
-        // outlet_tableview.insertRows(at: IndexPathOfLastRow, withAnimation: NSTableViewAnimationOptions.slideDown)
-        // self.outlet_tableview.insertRowsAtIndexPaths([IndexPathOfLastRow], withRowAnimation: UITableViewRowAnimation.Left)
-        
-        //  outlet_tableview.endUpdates()
-        
-        // outlet_tableview.insertRows(at: 2, withAnimation: NSTableViewAnimationOptions.slideDown)
-        
-        //        self.arr.append(["9.9.9.9","test"])
-        //        outlet_tableview.reloadData()
-        
+        //        outlet_tableview.beginUpdates()
+        //
+        //        let i:IndexSet = IndexSet(integer: 0)
+        //
+        //        //let rows = outlet_tableview.accessibilitySelectedRows()
+        //
+        //         outlet_tableview.insertRows(at: i, withAnimation: NSTableViewAnimationOptions.effectFade)
+        //
+        //        // outlet_tableview.reloadData(forRowIndexes: IndexSet, columnIndexes: IndexSet)
+        //
+        //        //  outlet_tableview.removeRows(at: IndexSet, withAnimation: <#T##NSTableViewAnimationOptions#>)
+        //
+        //        outlet_tableview.endUpdates()
         
     }
     
@@ -165,13 +205,19 @@ class ViewController: NSViewController ,SocketDelegate{
     
     var th : MySocket = MySocket()
     
-    
-    
     @IBAction func action_btnOK(_ sender: AnyObject) {
         
         if !th.isWorking {
             
-            if !Paras.parasValidated(ip:outlet_txt_ip.stringValue, port: outlet_txt_port.stringValue){
+            Paras.IP = outlet_txt_ip.stringValue
+            Paras.port = outlet_txt_port.stringValue
+            if outlet_radio_clientmodel.state == NSOnState {
+                Paras.isClientMode = true
+            } else {
+                Paras.isClientMode = false
+            }
+            
+            if !Paras.validate(){
                 
                 let a = NSAlert()
                 a.messageText = "Error"
@@ -189,40 +235,18 @@ class ViewController: NSViewController ,SocketDelegate{
                 return
             }
             
-            if outlet_radio_clientmodel.state==1{
-                Paras.isClientMode = true
-            } else {
-                Paras.isClientMode = false
-            }
+            // disable editing
+            setButtonEnable(id: "btnOK", enable: false)
+            // disable btn_ok to avoid next click during sub-thread starting
+            outlet_btn_ok.isEnabled = false
             
-            outlet_btn_ok.title = txt_stop
-            
-           // disable editing
-            outlet_txt_port.isEnabled = false
-            outlet_txt_ip.isEnabled = false
-            outlet_radio_clientmodel.isEnabled = false
-            outlet_radio_servermodel.isEnabled = false
- 
             th.start2Work()
             
-        } else { // socket is working
-            
-            if Paras.isClientMode {
-                outlet_btn_ok.title = txt_cnn
-            }else {
-                outlet_btn_ok.title = txt_listen
-            }
+        } else { // can stop working
             
             th.stopWorking()
-            
-            // endable editing
-            outlet_txt_port.isEnabled = true
-            outlet_txt_ip.isEnabled = true
-            outlet_radio_clientmodel.isEnabled = true
-            outlet_radio_servermodel.isEnabled = true
+            setButtonEnable(id: "btnOK", enable: true)
         }
-        
-        // NSLog( "ok click")
         
     }
     

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 sockettool. All rights reserved.
 //
 
-import Cocoa
+
 import Foundation
 
 
@@ -53,8 +53,6 @@ extension String :ErrorProtocol{
         return String(d)
     }
     
-    
-    
     func isHex() -> Bool {
         if self.characters.count == 0 {
             return false
@@ -71,7 +69,6 @@ extension String :ErrorProtocol{
         do {
             let regex = try RegularExpression(pattern: pattern, options: RegularExpression.Options.caseInsensitive)
             let res = regex.matches(in: self, options: RegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.characters.count))
-            
             if res.count > 0 {
                 return true
             }else {
@@ -107,108 +104,18 @@ extension Collection where  Iterator.Element == UInt8 {
     
 }
 
-
-
-extension ViewController : NSTableViewDataSource {
+extension Date {
     
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject?{
-        return nil
+    func toString(fmt:String) -> String {
+        
+        let f:DateFormatter  = DateFormatter()
+        f.dateFormat = fmt
+        return f.string(from: self)
+        //f.date(from: <#T##String#>)
     }
     
-    
-    func tableView(_ tableView: NSTableView, setObjectValue object: AnyObject?, for tableColumn: NSTableColumn?, row: Int){
-        
-        
-    }
-    
-    func numberOfRows(in tableView: NSTableView) -> Int{
-        return  th.socketList.count
-        
-    }
     
 }
 
-extension ViewController : NSTableViewDelegate {
-    
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        //        var mySelectedRows = [Int]()
-        //        let myTableViewFromNotification = notification.object as! NSTableView
-        //        // In this example, the TableView allows multiple selection
-        //        let indexes = myTableViewFromNotification.selectedRowIndexes
-        //        var index = indexes.first
-        //        while (index != nil && index != NSNotFound) {
-        //            mySelectedRows.append(index!)
-        //            index = indexes.integerGreaterThan(index!)
-        //        }
-        //
-        //        print(mySelectedRows)
-    }
-    
-    func tableViewDoubleClick(sender: AnyObject) {
-        print("doubleclick")
-        //        guard outlet_tableview.selectedRow >= 0  else {
-        //            return
-        //        }
-        //
-        //        if item.isFolder {
-        //            self.representedObject = item.url
-        //        } else {
-        //            NSWorkspace.sharedWorkspace().openURL(item.url)
-        //        }
-    }
-    
-    func tableView(tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [SortDescriptor]) {
-        print("sort")
 
-        //        guard let sortDescriptor = tableView.sortDescriptors.first else {
-        //            return
-        //        }
-        //        if let order = Directory.FileOrder(rawValue: sortDescriptor.key! ) {
-        //            sortOrder = order
-        //            sortAscending = sortDescriptor.ascending
-        //            reloadFileList()
-        //        }
-    }
-    
-    
-    // called by the table view for every row and column to get the appropriate cell.
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        guard th.socketList.count > 0 else { return nil}
-        
-        var text:String = ""
-        var cellIdentifier: String = ""
-        // var descriptor :AnyObject = -1
-        // Ambiguous reference to member 'subscript'
-        var i = 0
-        for (d:c) in th.socketList {
-            if i == row {
-                let  item:Connection = c.value
-                
-                //  descriptor =  item.descriptor as! AnyObject
-                
-                if tableColumn == tableView.tableColumns[0] {
-                    text =  item .socket.address.ipString()
-                    cellIdentifier = "ipcellID"
-                } else if tableColumn == tableView.tableColumns[1] {
-                    text =  item .socket.address.port.description
-                    cellIdentifier = "portcellID"
-                } else if tableColumn == tableView.tableColumns[2] {
-                    text = "R(\(item.receive)) S(\(item.send))"
-                    cellIdentifier = "statuscellID"
-                }
-                
-                break
-            }
-            i += 1
-        }
-        
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = text
-            //  cell.objectValue = descriptor
-            return cell
-        }
-        return nil
-    }
-}
 

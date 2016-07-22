@@ -30,35 +30,42 @@ class MySocket :NSObject{
         
         exit = false
         if Paras.isClientMode {
-            NSLog("client mode")
-        }else {
-            NSLog("server mode")
-            th = Thread(target: self, selector: #selector(MySocket.startServer  ), object: nil)
+            th = Thread(target: self, selector: #selector(MySocket.startClient), object: nil)
+            th!.start()
+        } else {
+            th = Thread(target: self, selector: #selector(MySocket.startServer), object: nil)
             th!.start()
         }
         
-        isWorking = true
     }
     
     func stopWorking(){
         exit = true
-        
-        for (d:s) in socketList {
-            try! s.value.socket.close()
-            s.value.set(status: .close, bytes: [])
-            
-            NSLog("-> \(s.value)")
-            
-            socketDelegate?.action(conn: s.value)
-        }
-        
-        try! thisSocket?.close()
-        
+        isWorking = false
+        socketDelegate?.setButtonEnable(id: "btnOK", enable: true)
         if th != nil {
             th?.cancel()
         }
+        for (d:s) in socketList {
+            do {
+                try s.value.socket.close()
+                s.value.set(status: .close, bytes: [])
+                NSLog("-> \(s.value)")
+                socketDelegate?.action(conn: s.value)
+            } catch {
+                print("\(error)")
+            }
+        }
         
-        isWorking = false
+        do {
+            if thisSocket != nil {
+                socketDelegate?.action(conn: Connection(socket: thisSocket!, status: .close, bytes: []))
+                try thisSocket?.close()
+            }
+        }catch {
+            NSLog("\(error)" )
+            socketDelegate?.action(msg: "\(error)")
+        }
         
     }
     
@@ -73,6 +80,12 @@ class MySocket :NSObject{
     }
     
     
+    func send(b: [UInt8]){
+        
+        guard thisSocket != nil else { return }
+        
+        send(descriptor: (thisSocket?.descriptor)!,b: b)
+    }
     
     func send(descriptor : Descriptor ,b: [UInt8]){
         
@@ -87,6 +100,7 @@ class MySocket :NSObject{
             try cnn.socket.send(data: b)
         }catch {
             NSLog("error \(error)")
+            socketDelegate?.action(msg:"\(error)" )
         }
         
     }
@@ -125,23 +139,69 @@ class MySocket :NSObject{
     }
     
     
+    func startClient(arg:AnyObject ) {
+        do{
+            let client = try TCPInternetSocket(address: Paras.addr!)
+            try  client.connect(withTimeout: 3)
+            thisSocket = client
+            let c = Connection( socket: client, status:.connecting,bytes: [])
+            socketList[client.descriptor] = c
+            NSLog("--> \(c) OK ")
+            isWorking = true
+            socketDelegate?.action(conn: c)
+            socketDelegate?.setButtonEnable(id: "btnOK", enable: false)
+            let time = timeval(tv_sec: 0, tv_usec: 500)
+            while !exit {
+                
+                let flag = try client.waitForReadableData(timeout: time)
+                //print("client loop have readable bytes \(flag) client close =\(client.closed)")
+                if flag {
+                    let b = try client.recvAll()
+                    if b.count <= 0 {
+                        // it seems that socket is closed
+                        stopWorking()
+                        exit = true
+                    } else {
+                        c.set(status: SocketStatus.receive, bytes:b)
+                        socketDelegate?.action(conn: c)
+                    }
+                }
+                
+            }
+        }catch {
+            exit = true
+            NSLog("\(error)")
+            socketDelegate?.action(msg: "\(error)")
+            socketDelegate?.setButtonEnable(id: "btnOK", enable: true)
+        }
+    }
+    
     func startServer(arg: AnyObject){
         
         do {
-            var address = InternetAddress.any(port: 8080)
-            if Paras.IP != "0.0.0.0" {
-                  address =   InternetAddress(hostname: Paras.IP!, port: (UInt16)(Paras.port),addressFamily: AddressFamily.inet)
-            }
-           
+            let address = Paras.addr!
             let  server = try TCPInternetSocket(address: address)
             thisSocket = server
             
-            try server.bind()
-            try server.listen()
+            NSLog("Start \(Paras.isClientMode ? "client":"server" ) mode")
             
-            socketDelegate?.action(conn: Connection(socket: server, status: .startListening, bytes: []))
+            if Paras.isClientMode {
+                try server.connect(withTimeout: 3)
+                let c = Connection( socket: server, status:.connecting,bytes: [])
+                socketList[server.descriptor] = c
+                socketDelegate?.action(conn: Connection(socket: server, status: .connecting, bytes: []))
+                NSLog("Socket(\(server.descriptor)) connect to \( server.address ) ")
+                
+            } else {
+                try server.bind()
+                try server.listen()
+                socketDelegate?.action(conn: Connection(socket: server, status: .startListening, bytes: []))
+                NSLog("Socket(\(server.descriptor)) listening on \( server.address ) ")
+            }
             
-            NSLog("Socket(\(server.descriptor)) listening on \( server.address ) ")
+            socketDelegate?.setButtonEnable(id: "btnOK", enable: false)
+            
+            isWorking = true
             
             while true {
                 
@@ -151,6 +211,8 @@ class MySocket :NSObject{
                 let watchedReads = Array(socketList.keys) + [server.descriptor]
                 
                 let (reads, writes, errors) = try select(reads: watchedReads, errors: watchedReads  )
+                
+                print("shiiiiit")
                 
                 //first handle any existing connections
                 try reads.filter { $0 != server.descriptor }.forEach {
@@ -191,6 +253,7 @@ class MySocket :NSObject{
             
         } catch {
             exit = true
+            socketDelegate?.setButtonEnable(id: "btnOK", enable: true)
             print("catch Error \(error) <-----")
         }
         NSLog(" end of method")

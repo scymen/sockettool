@@ -13,12 +13,12 @@ import SocksCore
 public class Paras:NSObject {
     
     static var isClientMode :Bool = true
-    static var IP:String? = "127.0.0.1"
-    static var port:Int32 = 8070
+    static var IP:String = "0.0.0.0"
+    static var port:String = "1080"
     static var addr :InternetAddress?
     
     override init() {
-        //  GParas.addr =  InternetAddress(hostname: GParas.IP!, port: (UInt16)(GParas.port), addressFamily: AddressFamily.inet)
+      // Paras.addr =  InternetAddress(hostname: Paras.IP, port: (UInt16)(Paras.port)!, addressFamily: AddressFamily.inet)
     }
     
     deinit {
@@ -26,15 +26,13 @@ public class Paras:NSObject {
     }
     
     
-    static func parasValidated(ip:String,port:String) -> Bool {
-        
-        if  !port.isMatch( pattern: "^\\d{1,5}$")  || !ip.isMatch(pattern: String.reExpr_ip){
+    static func validate() -> Bool {
+ 
+        if !Paras.port.isMatch(pattern:"^\\d{1,5}$") || !Paras.IP.isMatch(pattern:String.reExpr_ip) {
             return false
         }
         
-        Paras.IP = ip
-        Paras.port = Int32(port)!
-        Paras.addr =  InternetAddress(hostname: Paras.IP!, port: (UInt16)(Paras.port),
+        Paras.addr =  InternetAddress(hostname: Paras.IP, port: UInt16(  Paras.port )!,
                                        addressFamily: AddressFamily.inet)
         
         return true

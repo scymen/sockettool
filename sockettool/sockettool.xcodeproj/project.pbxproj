@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7021F2C51D3F195800EEDFEE /* ExtendThem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7021F2C41D3F195700EEDFEE /* ExtendThem.swift */; };
 		7021F2D21D3F1C5000EEDFEE /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7021F2D11D3F1C5000EEDFEE /* Connection.swift */; };
+		7021F2D41D3F5D2300EEDFEE /* ExtendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7021F2D31D3F5D2300EEDFEE /* ExtendViewController.swift */; };
 		702BE97D1D28B9F60057FC9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE97C1D28B9F60057FC9B /* AppDelegate.swift */; };
 		702BE97F1D28B9F60057FC9B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BE97E1D28B9F60057FC9B /* ViewController.swift */; };
 		702BE9811D28B9F60057FC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 702BE9801D28B9F60057FC9B /* Assets.xcassets */; };
@@ -118,6 +119,7 @@
 /* Begin PBXFileReference section */
 		7021F2C41D3F195700EEDFEE /* ExtendThem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendThem.swift; sourceTree = "<group>"; };
 		7021F2D11D3F1C5000EEDFEE /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		7021F2D31D3F5D2300EEDFEE /* ExtendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendViewController.swift; sourceTree = "<group>"; };
 		702BE9791D28B9F60057FC9B /* sockettool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sockettool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		702BE97C1D28B9F60057FC9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		702BE97E1D28B9F60057FC9B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				70529BD71D2B556300E9AF4B /* Paras.swift */,
 				70848B5C1D30FA3C00661A61 /* MySocket.swift */,
 				7021F2C41D3F195700EEDFEE /* ExtendThem.swift */,
+				7021F2D31D3F5D2300EEDFEE /* ExtendViewController.swift */,
 				7021F2D11D3F1C5000EEDFEE /* Connection.swift */,
 			);
 			path = sockettool;
@@ -464,6 +467,7 @@
 				7021F2D21D3F1C5000EEDFEE /* Connection.swift in Sources */,
 				70529BD81D2B556300E9AF4B /* Paras.swift in Sources */,
 				702BE97F1D28B9F60057FC9B /* ViewController.swift in Sources */,
+				7021F2D41D3F5D2300EEDFEE /* ExtendViewController.swift in Sources */,
 				702BE97D1D28B9F60057FC9B /* AppDelegate.swift in Sources */,
 				70848B5D1D30FA3C00661A61 /* MySocket.swift in Sources */,
 			);
