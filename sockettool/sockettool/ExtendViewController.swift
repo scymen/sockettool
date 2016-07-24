@@ -12,11 +12,7 @@ import Foundation
 
 
 extension ViewController : NSTableViewDataSource {
-    
-    //    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject?{
-    //        return nil
-    //    }
-    
+
     
     func tableView(_ tableView: NSTableView, setObjectValue object: AnyObject?, for tableColumn: NSTableColumn?, row: Int){
         
@@ -32,49 +28,16 @@ extension ViewController : NSTableViewDataSource {
 extension ViewController : NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        
-//        let selects = outlet_tableview.selectedRowIndexes
-//        
-//        let a =  outlet_tableview.accessibilityCell(forColumn: 0, row: selects.first!)
-//        let b = a as! NSTableCellView
-//        let c = b.objectValue
-//        //        var mySelectedRows = [Int]()
-        //        let myTableViewFromNotification = notification.object as! NSTableView
-        //        // In this example, the TableView allows multiple selection
-        //        let indexes = myTableViewFromNotification.selectedRowIndexes
-        //        var index = indexes.first
-        //        while (index != nil && index != NSNotFound) {
-        //            mySelectedRows.append(index!)
-        //            index = indexes.integerGreaterThan(index!)
-        //        }
-        //
-        //        print(mySelectedRows)
+
     }
     
     func tableViewDoubleClick(sender: AnyObject) {
-        print("doubleclick")
-        //        guard outlet_tableview.selectedRow >= 0  else {
-        //            return
-        //        }
-        //
-        //        if item.isFolder {
-        //            self.representedObject = item.url
-        //        } else {
-        //            NSWorkspace.sharedWorkspace().openURL(item.url)
-        //        }
+
     }
     
     func tableView(tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [SortDescriptor]) {
-        print("sort")
-        
-        //        guard let sortDescriptor = tableView.sortDescriptors.first else {
-        //            return
-        //        }
-        //        if let order = Directory.FileOrder(rawValue: sortDescriptor.key! ) {
-        //            sortOrder = order
-        //            sortAscending = sortDescriptor.ascending
-        //            reloadFileList()
-        //        }
+      //  print("sort")
+
     }
     
     
@@ -85,6 +48,7 @@ extension ViewController : NSTableViewDelegate {
         
         var text:String = ""
         var cellIdentifier: String = ""
+        var objV = -1
         
         // Ambiguous reference to member 'subscript'
         var i = 0
@@ -95,6 +59,7 @@ extension ViewController : NSTableViewDelegate {
                 if tableColumn == tableView.tableColumns[0] {
                     text =  item .socket.address.ipString()
                     cellIdentifier = "IP"
+                    objV = Int(item.descriptor)
                 } else if tableColumn == tableView.tableColumns[1] {
                     text =  item .socket.address.port.description
                     cellIdentifier = "Port"
@@ -104,15 +69,15 @@ extension ViewController : NSTableViewDelegate {
                 }
                 
                 break
-                
             }
             i += 1
         }
         
+        
         if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
             cell.identifier = cellIdentifier
-            cell.objectValue = 9
+            cell.objectValue = objV
             return cell
         }
         return nil

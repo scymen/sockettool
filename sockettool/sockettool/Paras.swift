@@ -18,7 +18,7 @@ public class Paras:NSObject {
     static var addr :InternetAddress?
     
     override init() {
-      // Paras.addr =  InternetAddress(hostname: Paras.IP, port: (UInt16)(Paras.port)!, addressFamily: AddressFamily.inet)
+
     }
     
     deinit {

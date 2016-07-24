@@ -87,6 +87,14 @@ class MySocket :NSObject{
         send(descriptor: (thisSocket?.descriptor)!,b: b)
     }
     
+    
+    func send(descriptor:[Descriptor],b :[UInt8]) {
+        if descriptor.count <= 0 { return }
+        for i in descriptor {
+            send(descriptor: Descriptor(i),b:b)
+        }
+    }
+    
     func send(descriptor : Descriptor ,b: [UInt8]){
         
         guard socketList.keys.contains(descriptor) else {return }
@@ -211,8 +219,6 @@ class MySocket :NSObject{
                 let watchedReads = Array(socketList.keys) + [server.descriptor]
                 
                 let (reads, writes, errors) = try select(reads: watchedReads, errors: watchedReads  )
-                
-                print("shiiiiit")
                 
                 //first handle any existing connections
                 try reads.filter { $0 != server.descriptor }.forEach {

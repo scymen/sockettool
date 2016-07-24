@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7012F1EE1D4261FA001AE84A /* Socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708352891D3A741400009A2F /* Socks.framework */; };
+		7012F1EF1D4261FA001AE84A /* Socks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 708352891D3A741400009A2F /* Socks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7012F1F21D4261FA001AE84A /* SocksCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7083528B1D3A741400009A2F /* SocksCore.framework */; };
+		7012F1F31D4261FA001AE84A /* SocksCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7083528B1D3A741400009A2F /* SocksCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7021F2C51D3F195800EEDFEE /* ExtendThem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7021F2C41D3F195700EEDFEE /* ExtendThem.swift */; };
 		7021F2D21D3F1C5000EEDFEE /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7021F2D11D3F1C5000EEDFEE /* Connection.swift */; };
 		7021F2D41D3F5D2300EEDFEE /* ExtendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7021F2D31D3F5D2300EEDFEE /* ExtendViewController.swift */; };
@@ -23,6 +27,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7012F1F01D4261FA001AE84A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Socks";
+			remoteInfo = Socks;
+		};
+		7012F1F41D4261FA001AE84A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7083527A1D3A741400009A2F /* Socks.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_SocksCore";
+			remoteInfo = SocksCore;
+		};
 		702BE98B1D28B9F60057FC9B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 702BE9711D28B9F60057FC9B /* Project object */;
@@ -116,6 +134,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7012F1F61D4261FA001AE84A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7012F1EF1D4261FA001AE84A /* Socks.framework in Embed Frameworks */,
+				7012F1F31D4261FA001AE84A /* SocksCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7021F2C41D3F195700EEDFEE /* ExtendThem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendThem.swift; sourceTree = "<group>"; };
 		7021F2D11D3F1C5000EEDFEE /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
@@ -142,8 +175,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7012F1EE1D4261FA001AE84A /* Socks.framework in Frameworks */,
 				705FA4DD1D3B3E5000F0EAB7 /* Socks.framework in Frameworks */,
 				705FA4DE1D3B3E5000F0EAB7 /* SocksCore.framework in Frameworks */,
+				7012F1F21D4261FA001AE84A /* SocksCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,10 +283,13 @@
 				702BE9751D28B9F60057FC9B /* Sources */,
 				702BE9761D28B9F60057FC9B /* Frameworks */,
 				702BE9771D28B9F60057FC9B /* Resources */,
+				7012F1F61D4261FA001AE84A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7012F1F11D4261FA001AE84A /* PBXTargetDependency */,
+				7012F1F51D4261FA001AE84A /* PBXTargetDependency */,
 			);
 			name = sockettool;
 			productName = sockettool;
@@ -492,6 +530,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7012F1F11D4261FA001AE84A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Socks;
+			targetProxy = 7012F1F01D4261FA001AE84A /* PBXContainerItemProxy */;
+		};
+		7012F1F51D4261FA001AE84A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SocksCore;
+			targetProxy = 7012F1F41D4261FA001AE84A /* PBXContainerItemProxy */;
+		};
 		702BE98C1D28B9F60057FC9B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 702BE9781D28B9F60057FC9B /* sockettool */;
@@ -605,6 +653,7 @@
 		702BE99F1D28B9F70057FC9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = sockettool/Info.plist;
@@ -618,6 +667,7 @@
 		702BE9A01D28B9F70057FC9B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = sockettool/Info.plist;

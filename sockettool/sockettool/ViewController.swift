@@ -25,9 +25,7 @@ class ViewController: NSViewController ,SocketDelegate{
         if outlet_radio_clientmodel.state == 1 {
             outlet_btn_ok.title = txt_cnn
         }
-        
-        //outlet_textview.string = "Ready\r\n"
-        
+
         showMsg(str:"Ready",clearFirstly: true)
         
         outlet_tableview.delegate = self
@@ -87,6 +85,15 @@ class ViewController: NSViewController ,SocketDelegate{
         //http://stackoverflow.com/questions/37805885/how-to-create-dispatch-queue-in-swift-3
         DispatchQueue.main.async {
             self.outlet_tableview.reloadData()
+//            switch conn.status {
+//            case .close,.new,.connecting:
+//                self.outlet_tableview.reloadData()
+//            case .send,.receive:
+//              
+//                self.outlet_tableview.reloadData(forRowIndexes: <#T##IndexSet#>, columnIndexes: <#T##IndexSet#>)
+//            }
+            
+            self.outlet_tableview.reloadData()
             if self.outlet_checkbox_hex.state == 1 {
                 self.showMsg(str: "\(conn)")
             } else {
@@ -140,10 +147,27 @@ class ViewController: NSViewController ,SocketDelegate{
             
         } else {
             
-            let aa:IndexSet =  outlet_tableview.selectedRowIndexes
             
-            print("-->> index set = \(aa)")
-            th.send(descriptor: Descriptor(3), b: getMsg2send())
+            let indexSet =  outlet_tableview.selectedRowIndexes
+            
+            if indexSet.count == 0 {
+                let de = th.socketList.first?.value.descriptor
+                th.send(descriptor: de! , b:  getMsg2send())
+            } else {
+                
+                var d :[Descriptor] = []
+                
+                for i in indexSet.enumerated() {
+                    let v = outlet_tableview.view(atColumn: 0, row: i.element, makeIfNecessary: false)
+                    
+                    let cellview = v as! NSTableCellView
+                    let ob = cellview.objectValue as! Int
+                    d.append(Descriptor( ob))
+                }
+                print("-->> index set = \(indexSet) , descriptor = \(d)")
+                th.send(descriptor:d, b: getMsg2send())
+            }
+            
         }
         
     }
@@ -174,20 +198,6 @@ class ViewController: NSViewController ,SocketDelegate{
     @IBAction func action_btn_clear(_ sender: AnyObject) {
         
         showMsg(str: "Clear",clearFirstly: true)
-        
-        //        outlet_tableview.beginUpdates()
-        //
-        //        let i:IndexSet = IndexSet(integer: 0)
-        //
-        //        //let rows = outlet_tableview.accessibilitySelectedRows()
-        //
-        //         outlet_tableview.insertRows(at: i, withAnimation: NSTableViewAnimationOptions.effectFade)
-        //
-        //        // outlet_tableview.reloadData(forRowIndexes: IndexSet, columnIndexes: IndexSet)
-        //
-        //        //  outlet_tableview.removeRows(at: IndexSet, withAnimation: <#T##NSTableViewAnimationOptions#>)
-        //
-        //        outlet_tableview.endUpdates()
         
     }
     
@@ -237,12 +247,12 @@ class ViewController: NSViewController ,SocketDelegate{
             
             // disable editing
             setButtonEnable(id: "btnOK", enable: false)
-            // disable btn_ok to avoid next click during sub-thread starting
+            
             outlet_btn_ok.isEnabled = false
             
             th.start2Work()
             
-        } else { // can stop working
+        } else { //stop working
             
             th.stopWorking()
             setButtonEnable(id: "btnOK", enable: true)
