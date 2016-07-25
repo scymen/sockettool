@@ -99,9 +99,23 @@ extension Collection where  Iterator.Element == UInt8 {
             s += _hex[ (Int)((b & 0xf0)>>4)]
             s += _hex[(Int)(b & 0x0f)]
         }
+        
         return s
     }
     
+    func toASCIIs() -> String {
+        if self.count <= 0 { return "" }
+        //var ch:[Character] = []
+        var s = ""
+        for c in self {
+            s += UnicodeScalar(c).escaped(asASCII: false)
+            //  ch.append( Character(UnicodeScalar(c).escaped(asASCII: false)))
+        }
+        return  s
+        //let b:[UInt8] = self as! [UInt8]
+        // let ns = NSString(bytes: b, length: b.count, encoding: String.Encoding.utf8.rawValue)
+        //return (ns?.description)!
+    }
 }
 
 extension Date {

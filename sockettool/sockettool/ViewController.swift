@@ -25,7 +25,7 @@ class ViewController: NSViewController ,SocketDelegate{
         if outlet_radio_clientmodel.state == 1 {
             outlet_btn_ok.title = txt_cnn
         }
-
+        
         showMsg(str:"Ready",clearFirstly: true)
         
         outlet_tableview.delegate = self
@@ -84,20 +84,19 @@ class ViewController: NSViewController ,SocketDelegate{
     func action(conn: Connection ){
         //http://stackoverflow.com/questions/37805885/how-to-create-dispatch-queue-in-swift-3
         DispatchQueue.main.async {
-            self.outlet_tableview.reloadData()
-//            switch conn.status {
-//            case .close,.new,.connecting:
-//                self.outlet_tableview.reloadData()
-//            case .send,.receive:
-//              
-//                self.outlet_tableview.reloadData(forRowIndexes: <#T##IndexSet#>, columnIndexes: <#T##IndexSet#>)
-//            }
+            //            switch conn.status {
+            //            case .close,.new,.connecting:
+            //                self.outlet_tableview.reloadData()
+            //            case .send,.receive:
+            //
+            //                self.outlet_tableview.reloadData(forRowIndexes: <#T##IndexSet#>, columnIndexes: <#T##IndexSet#>)
+            //            }
             
             self.outlet_tableview.reloadData()
             if self.outlet_checkbox_hex.state == 1 {
                 self.showMsg(str: "\(conn)")
             } else {
-                self.showMsg(str: "\(try! conn.bytes.toString())")
+                self.showMsg(str: "\( conn.toStringWithASCIIs())")
             }
             
         }
@@ -190,7 +189,7 @@ class ViewController: NSViewController ,SocketDelegate{
     
     func showMsg(str:String,clearFirstly:Bool = false,newLine:Bool = true) {
         let a : String = clearFirstly ? "":self.outlet_textview.string!
-        self.outlet_textview.string = a + "\(Date().toString(fmt: "HH:mm:ss.SSS")) \(str)"
+        self.outlet_textview.string = a + "[\(Date().toString(fmt: "HH:mm:ss.SSS"))] \(str)"
             + (newLine ? "\r" :"")
     }
     

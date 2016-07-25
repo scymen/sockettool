@@ -56,7 +56,7 @@ class MySocket :NSObject{
                 print("\(error)")
             }
         }
-        
+        socketList.removeAll()
         do {
             if thisSocket != nil {
                 socketDelegate?.action(conn: Connection(socket: thisSocket!, status: .close, bytes: []))
@@ -104,7 +104,7 @@ class MySocket :NSObject{
             cnn.set(status: .send, bytes: b)
             
             NSLog("-> \(cnn)")
-            
+            socketDelegate?.action(conn: cnn)
             try cnn.socket.send(data: b)
         }catch {
             NSLog("error \(error)")
@@ -170,7 +170,8 @@ class MySocket :NSObject{
                         stopWorking()
                         exit = true
                     } else {
-                        c.set(status: SocketStatus.receive, bytes:b)
+                        c.set(status: .receive, bytes:b)
+                          NSLog("<-- \(c)")
                         socketDelegate?.action(conn: c)
                     }
                 }

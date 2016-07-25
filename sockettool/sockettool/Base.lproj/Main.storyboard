@@ -678,12 +678,12 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Config" identifier="1" id="Dh4-Pj-eLJ">
-                                        <view key="view" id="wQo-sP-gLD">
-                                            <rect key="frame" x="10" y="33" width="597" height="348"/>
+                                        <view key="view" ambiguous="YES" id="wQo-sP-gLD">
+                                            <rect key="frame" x="10" y="33" width="128" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daD-q2-NAW">
-                                                    <rect key="frame" x="16" y="296" width="99" height="18"/>
+                                                    <rect key="frame" x="16" y="-52" width="99" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Client Model" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="g6m-cg-maj">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -694,7 +694,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BKW-dN-rMr">
-                                                    <rect key="frame" x="135" y="296" width="103" height="18"/>
+                                                    <rect key="frame" x="135" y="-52" width="103" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="Server Model" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Glf-hS-p7p">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -705,7 +705,7 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-MQ-GKe">
-                                                    <rect key="frame" x="264" y="247" width="97" height="32"/>
+                                                    <rect key="frame" x="264" y="-101" width="97" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0S5-DL-Rka">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -719,7 +719,7 @@ DQ
                                                     </buttonCell>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iks-Hd-oTm">
-                                                    <rect key="frame" x="17" y="253" width="153" height="22"/>
+                                                    <rect key="frame" x="17" y="-95" width="153" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="127.0.0.1" placeholderString="IP address" drawsBackground="YES" id="ce4-nH-8bi">
                                                         <font key="font" metaFont="system"/>
@@ -728,7 +728,7 @@ DQ
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kSE-le-3w9">
-                                                    <rect key="frame" x="178" y="253" width="58" height="22"/>
+                                                    <rect key="frame" x="178" y="-95" width="58" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="1234" placeholderString="Port" drawsBackground="YES" id="uZ6-zd-x2I">
                                                         <font key="font" metaFont="system"/>
@@ -740,7 +740,7 @@ DQ
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="View" identifier="2" id="mxM-U2-WXZ">
-                                        <view key="view" ambiguous="YES" id="ujJ-2n-3bQ">
+                                        <view key="view" id="ujJ-2n-3bQ">
                                             <rect key="frame" x="10" y="33" width="597" height="348"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -931,7 +931,7 @@ DQ
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Bzz-kH-cYo">
-                                                        <rect key="frame" x="342" y="1" width="15" height="264"/>
+                                                        <rect key="frame" x="1" y="1" width="15" height="0.0"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>

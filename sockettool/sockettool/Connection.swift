@@ -81,28 +81,32 @@ class Connection: NSObject {
     }
     
     override var description: String {
-        //return "[\(_status)][\(_socket.address)][\(_bytes.count)] \(_bytes)"
-        return "[\(_status)]\(fmtAddr())\(fmtCount()) \(_bytes.toHex().insert(step: 2,ch: Character(" ")))"
+        return "\(fmtAddr) \(fmtCount) \(_status.description) \(_bytes.toHex().insert(step: 2,ch: Character(" ")))"
     }
     
+    // byte array
     func toStringWithByte() -> String {
-        return "[\(_status)]\(fmtAddr())\(fmtCount()) \(_bytes)"
+        return "\(fmtAddr) \(fmtCount) \(_status.description) \(_bytes)"
     }
     
-    private func fmtAddr() -> String {
+    func toStringWithASCIIs() -> String {
+        return "\(fmtAddr) \(fmtCount) \(_status.description) \( _bytes.toASCIIs() )"
+    }
+    
+    private var fmtAddr: String {
         if try! _socket.address.addressFamily() == .inet {
-            return "[\(_socket.address.ipString()):\(_socket.address.port)]"
+            return "{\(_socket.address.ipString()):\(_socket.address.port)}"
         } else {
-            return "[\(_socket.address)]"
+            return "{\(_socket.address)}"
         }
     }
     
-    private func fmtCount() -> String {
+    private var fmtCount: String {
         switch _status {
         case .new,.close,.connecting,.startListening:
             return ""
         default:
-            return "[\(_bytes.count)]"
+            return "(\(_bytes.count))"
         }
     }
     
@@ -115,4 +119,14 @@ enum SocketStatus {
     case send
     case startListening
     case connecting
+    var description : String {
+        switch self {
+        case .new: return "NewConnection";
+        case .close: return "Close";
+        case .receive: return "<-";
+        case .send :return "->"
+        case .startListening :return "StartListening"
+        case .connecting:return "Connecting..."
+        }
+    }
 }
